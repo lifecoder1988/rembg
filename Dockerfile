@@ -19,6 +19,7 @@ WORKDIR /rembg
 
 COPY . .
 RUN python3.9 -m pip install .[gpu]
+#RUN python3.9 -m pip install .
 
 RUN mkdir -p ~/.u2net
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx -O ~/.u2net/u2netp.onnx
