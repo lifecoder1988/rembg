@@ -18,7 +18,7 @@ RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9
 WORKDIR /rembg
 
 COPY . .
-RUN python3.9 -m pip install .
+RUN python3.9 -m pip install .[gpu]
 
 RUN mkdir -p ~/.u2net
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx -O ~/.u2net/u2netp.onnx
