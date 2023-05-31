@@ -21,8 +21,8 @@ def handleEvent(event):
     args = event["args"]
     filename = event["uuid"]
 
-    tpl = '''curl -s "%s" | rembg i %s > /data/bg-input/%s'''
-    cmd = tpl %(url,args,filename)
+    tpl = '''curl -s "%s" | rembg i %s > /data/bg-input/%s.tmp && mv %s.tmp %s'''
+    cmd = tpl %(url,args,filename,filename,filename)
 
     result = subprocess.run(cmd,shell=True)
     print(result)
