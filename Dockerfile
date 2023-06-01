@@ -17,15 +17,19 @@ RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9
 
 WORKDIR /rembg
 
-COPY . .
-RUN python3.9 -m pip install .[gpu]
-#RUN python3.9 -m pip install .
-
 RUN mkdir -p ~/.u2net
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx -O ~/.u2net/u2netp.onnx
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx -O ~/.u2net/u2net.onnx
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx -O ~/.u2net/u2net_human_seg.onnx
 RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_cloth_seg.onnx -O ~/.u2net/u2net_cloth_seg.onnx
+
+
+COPY . .
+RUN python3.9 -m pip install .[gpu]
+#RUN python3.9 -m pip install .
+
+
+RUN mkdir -p /data/bg-input/
 
 EXPOSE 5000
 ENTRYPOINT ["python3.9","rembg/handler.py"]
